@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if node[:platform_family]?('debian')
+if node["platform_family"] == 'debian'
   remote_file "#{Chef::Config[:file_cache_path]}/mod-pagespeed.deb" do
     source node['apache2']['mod_pagespeed']['package_link']
     mode '0644'
