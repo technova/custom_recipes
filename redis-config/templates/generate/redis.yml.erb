@@ -1,0 +1,5 @@
+<%= @redis[:environment] %>: 
+  port: <%= @redis[:port] || 6379 %>
+  host: <%= @redis[:host] %>
+  namespace: <%= @redis[:namespace] %>
+  database: 1
