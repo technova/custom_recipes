@@ -1,5 +1,6 @@
 <%= @deploy_config[:rails_env] %>: 
-  port: <%= @deploy_config[:redis][:port] || 6379 %>
-  host: <%= @deploy_config[:redis][:host] %>
-  namespace: <%= @deploy_config[:redis][:namespace] %>
+  bucket: <%= @deploy_config[:s3][:bucket] %>
+  use_ssl: <%= @deploy_config[:s3][:use_ssl] || false %>
+  secret_access_key: <%= @deploy_config[:s3][:secret_access_key] %>
+  access_key_id: <%= @deploy_config[:s3][:access_key_id] %>
   database: 1
