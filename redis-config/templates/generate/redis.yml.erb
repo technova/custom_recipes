@@ -1,0 +1,5 @@
+<%= @deploy_config[:rails_env] %>: 
+  port: <%= @deploy_config[:redis][:port] || 6379 %>
+  host: <%= @deploy_config[:redis][:host] %>
+  namespace: <%= @deploy_config[:redis][:namespace] %>
+  database: 1
