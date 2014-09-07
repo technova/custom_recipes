@@ -3,15 +3,21 @@
 # Cookbook Name:: simple
 # Recipe:: cron
 #
+log_file = node[:log_file] || '/var/log/cron.log'
 
+file log_file do
+  owner "root"
+  group "root"
+  mode "0777"
+  action :create_if_missing
+end
 
 node[:crons].each do |cron_name, cron_data|
   cron_d cron_name do
     action :delete
   end
+  
   env        = cron_data['environment_variables'] || ''
-  log_file   = cron_data['log_file'] || '/var/log/cron.log'
-  run_cmd   = cron_data['run_cmd']
   cron_user   = cron_data['user'] || 'root'
 
   cron cron_name do
@@ -20,9 +26,9 @@ node[:crons].each do |cron_name, cron_data|
     weekday cron_data['weekday'] if cron_data['weekday']
     path cron_data['path'] if cron_data['path']
     mailto  cron_data['mailto'] if cron_data['mailto']
-    user    cron_user 
+    user cron_user 
     cmd = ''
-    cmd << "#{env} #{run_cmd} > #{log_file} 2>&1"
+    cmd << "#{env} #{cron_data['run_cmd']} > #{log_file} 2>&1"
     command cmd
   end
 end
