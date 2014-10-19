@@ -10,9 +10,12 @@
 template '/etc/apt/sources.list.d/mc3man-trusty-media-trusty.list' do
   source 'mc3man-trusty-media-trusty.erb'
   action :create_if_missing
-  notifies :run, 'execute[apt-get update]', :immediately
 end
-
+execute "apt-get-update" do
+  command "apt-get update"
+  ignore_failure true
+  action :nothing
+end
 package 'ffmpeg' do
   package_name 'ffmpeg'
   action :install
