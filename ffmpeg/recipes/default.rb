@@ -31,9 +31,11 @@ end
 package 'ffmpeg' do
   package_name 'ffmpeg'
   action :install
+  user  :root
 end
 
 package 'gstreamer0.10-ffmpeg' do
   package_name 'gstreamer0.10-ffmpeg'
   action :install
+  user  :root
 end
