@@ -7,15 +7,27 @@
 # All rights reserved - Do Not Redistribute
 #
 
-template '/etc/apt/sources.list.d/mc3man-trusty-media-trusty.list' do
-  source 'mc3man-trusty-media-trusty.erb'
-  action :create_if_missing
+# sudo apt-add-repository ppa:mc3man/trusty-media
+# sudo apt-get update
+# sudo apt-get install ffmpeg gstreamer0.10-ffmpeg
+
+# template '/etc/apt/sources.list.d/mc3man-trusty-media-trusty.list' do
+#   source 'mc3man-trusty-media-trusty.erb'
+#   action :create_if_missing
+# end
+
+execute "add-apt-repository -y ppa:mc3man/trusty-media" do
+  user :root
 end
+
 execute "apt-get-update" do
   command "apt-get update"
   ignore_failure true
   action :nothing
+  user	:root
+  group	:root
 end
+
 package 'ffmpeg' do
   package_name 'ffmpeg'
   action :install
