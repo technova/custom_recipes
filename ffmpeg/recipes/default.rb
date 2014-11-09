@@ -28,7 +28,7 @@ execute "apt-get-update" do
   group	"root"
 end
 
-execute "apt-get -q -y install ffmpeg gstreamer0.10-ffmpeg" do
+execute "apt-get -q -y --force-yes install ffmpeg gstreamer0.10-ffmpeg" do
   user "root"
 end
 # package 'ffmpeg' do
