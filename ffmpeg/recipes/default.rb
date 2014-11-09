@@ -16,8 +16,8 @@
 #   action :create_if_missing
 # end
 
-execute "add-apt-repository -y ppa:mc3man/trusty-media" do
-  user :root
+execute "apt-add-repository -y ppa:mc3man/trusty-media" do
+  user "root"
 end
 
 execute "apt-get-update" do
@@ -31,11 +31,9 @@ end
 package 'ffmpeg' do
   package_name 'ffmpeg'
   action :install
-  user  :root
 end
 
 package 'gstreamer0.10-ffmpeg' do
   package_name 'gstreamer0.10-ffmpeg'
   action :install
-  user  :root
 end
