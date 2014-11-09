@@ -28,12 +28,15 @@ execute "apt-get-update" do
   group	"root"
 end
 
-package 'ffmpeg' do
-  package_name 'ffmpeg'
-  action :install
+execute "apt-get install ffmpeg gstreamer0.10-ffmpeg" do
+  user "root"
 end
+# package 'ffmpeg' do
+#   package_name 'ffmpeg'
+#   action :install
+# end
 
-package 'gstreamer0.10-ffmpeg' do
-  package_name 'gstreamer0.10-ffmpeg'
-  action :install
-end
+# package 'gstreamer0.10-ffmpeg' do
+#   package_name 'gstreamer0.10-ffmpeg'
+#   action :install
+# end
