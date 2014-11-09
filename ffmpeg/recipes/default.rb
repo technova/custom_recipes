@@ -20,12 +20,8 @@ execute "apt-add-repository -y ppa:mc3man/trusty-media" do
   user "root"
 end
 
-execute "apt-get-update" do
-  command "apt-get update"
-  ignore_failure true
-  action :nothing
+execute "apt-get update" do
   user	"root"
-  group	"root"
 end
 
 execute "apt-get -q -y --force-yes install ffmpeg gstreamer0.10-ffmpeg" do
