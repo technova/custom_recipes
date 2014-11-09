@@ -24,8 +24,8 @@ execute "apt-get-update" do
   command "apt-get update"
   ignore_failure true
   action :nothing
-  user	:root
-  group	:root
+  user	"root"
+  group	"root"
 end
 
 package 'ffmpeg' do
