@@ -9,7 +9,7 @@
 if node['folder'] && node['environment']
 folder_path = "/srv/www/#{node['folder']}/current"
 execute "run_bluepill" do
-  command "sudo su - deploy -c 'cd #{folder_path} &&  sudo RAILS_ENV=#{node['environment']} bundle exec bluepill stop && sudo RAILS_ENV=#{node['environment']} bundle exec bluepill load #{folder_path}/config/dj_bluepill.pill && sudo RAILS_ENV=#{node['environment']} bundle exec bluepill start'"
+  command "cd #{folder_path} &&  sudo RAILS_ENV=#{node['environment']} bundle exec bluepill stop && sudo RAILS_ENV=#{node['environment']} bundle exec bluepill load #{folder_path}/config/dj_bluepill.pill && sudo RAILS_ENV=#{node['environment']} bundle exec bluepill start"
   action :run
 end
 end
