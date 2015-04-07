@@ -1,3 +1,4 @@
+# //7a8a0514-9981-490a-9ec3-750374b30cff
 apt_repository 'logentries' do
   uri 'http://rep.logentries.com/'
   distribution node['lsb']['codename']
@@ -10,7 +11,7 @@ execute "apt-get update" do
   user	"root"
 end
 
-execute "apt-get install python-setproctitle logentries logentries-daemon" do
+execute "apt-get -q -y --force-yes install python-setproctitle logentries logentries-daemon" do
   user "root"
 end
 
