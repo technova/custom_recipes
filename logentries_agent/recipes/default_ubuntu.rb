@@ -26,6 +26,10 @@ execute 'initialize logentries daemon' do
     notifies :restart, 'service[logentries]'
 end
 
+service 'logentries' do
+  supports :stop => true, :start => true, :restart => true
+  action :nothing
+end
 
 execute "le follow log" do
   cmd="le follow '#{node['le']['logs_to_follow']}'"
