@@ -14,11 +14,11 @@ execute "apt-get install python-setproctitle logentries logentries-daemon" do
   user "root"
 end
 
-execute "le register --user-key \"#{le['account_key']}\" --name=\"#{le['hostname']\"" do
+execute "le register --user-key #{le['account_key']} --name=#{le['hostname']" do
   user "root"
 end
 
-execute "le follow \"#{le['logs_to_follow']}\"" do
+execute "le follow #{le['logs_to_follow']}" do
   user "root"
 end
 
