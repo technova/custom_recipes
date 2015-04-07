@@ -1,9 +1,9 @@
-execute "echo 'deb http://rep.logentries.com/ precise main' > /etc/apt/sources.list.d/logentries.list" do
-  user "root"
-end
-
-execute "gpg --keyserver pgp.mit.edu --recv-keys C43C79AD && gpg -a --export C43C79AD | apt-key add -" do
-  user	"root"
+apt_repository 'logentries' do
+  uri 'http://rep.logentries.com/'
+  distribution node['lsb']['codename']
+  components ['main']
+  keyserver node['le']['pgp_key_server']
+  key 'C43C79AD'
 end
 
 execute "apt-get update" do
