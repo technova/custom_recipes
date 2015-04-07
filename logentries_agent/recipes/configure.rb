@@ -43,12 +43,10 @@ if not le['pull-server-side-config']
   end
 else
   execute 'initialize logentries daemon' do
-    command(lazy do
-              cmd = "le register"
+    cmd = "le register"
               cmd += " --user-key #{le['account_key']}"
               cmd += " --name='#{le['hostname']}'"
-              cmd
-            end)
+    command(cmd)
 
     not_if 'le whoami'
 
