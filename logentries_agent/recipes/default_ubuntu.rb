@@ -16,8 +16,8 @@ end
 
 execute 'initialize logentries daemon' do
     cmd = "le register"
-              cmd += " --user-key #{le['account_key']}"
-              cmd += " --name='#{le['hostname']}'"
+              cmd += " --user-key #{node['le']['account_key']}"
+              cmd += " --name='#{node['le']['hostname']}'"
     command(cmd)
 
     not_if 'le whoami'
@@ -27,7 +27,7 @@ end
 
 
 execute "le follow log" do
-  cmd="le follow '#{le['logs_to_follow']}'"
+  cmd="le follow '#{node['le']['logs_to_follow']}'"
   command(cmd)
   user "root"
   notifies :restart, 'service[logentries]'
