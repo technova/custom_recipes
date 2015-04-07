@@ -14,14 +14,21 @@ execute "apt-get install python-setproctitle logentries logentries-daemon" do
   user "root"
 end
 
-execute "le register --user-key #{le['account_key']} --name=#{le['hostname']" do
-  user "root"
+execute 'initialize logentries daemon' do
+    cmd = "le register"
+              cmd += " --user-key #{le['account_key']}"
+              cmd += " --name='#{le['hostname']}'"
+    command(cmd)
+
+    not_if 'le whoami'
+    user "root"
+    notifies :restart, 'service[logentries]'
 end
 
-execute "le follow #{le['logs_to_follow']}" do
-  user "root"
-end
 
-execute "service logentries restart" do
-  user	"root"
+execute "le follow log" do
+  cmd="le follow '#{le['logs_to_follow']}'"
+  command(cmd)
+  user "root"
+  notifies :restart, 'service[logentries]'
 end
